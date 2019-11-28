@@ -33,24 +33,14 @@ BLACKLIST = [
 	"jewed",
 	"\\bg(ip|yp)\\b",
 	"race mixing",
-	
 	"cunts?",
-	"bitch(es|ing|y)?",
-	"puss(?!y\\s?foot)(y|ies?)?",
 	"whor(es?|ing)",
 	"\\bslut(s|t?y)?",
-	"hysterical",
-	
 	"cock\\s?sucker(s|ing)?",
 	"fagg?(s|ots?|y)?\\b",
 	"twats?",
 	"\\btrann?(y|ies?)",
 	"\\btraps?\\b",
-	
-	"craz(y|iest|ies)",
-	"insan(e|ity)",
-	"idiot(s|ic)?",
-	"moron(s|ic)?",
 	"retard",
 	"retarded",
 	"retards",
@@ -59,14 +49,7 @@ BLACKLIST = [
 	"fucktard(s|ed)?",
 	"spaz(es)?",
 	"spastics?",
-	"stupid(ity)?",
-	"dumb(?!\\s?(found|struck|bell))(est|er)?",
-	"dumbies",
 	"\\bspergs?\\b",
-	
-	"\\btank(y|ies)",
-	"stalin(ite|ism|ist)",
-	
 	"\\bre{3,}\\b",
 	"feminazis?",
 	"snowflake",
@@ -75,7 +58,6 @@ BLACKLIST = [
 	"attack helicopter",
 	"sexually identify",
 	"ephebophil(e|ia)",
-	"🅱",
 	"(deus|desu) vult",
 	"triggered",
 	"cuck",
@@ -88,6 +70,13 @@ BLACKLIST = [
 	"cultural marx(ist|ism)",
 	"autis(tic|m|t)",
 	"kek",
+	
+	
+	"\\btank(y|ies)",
+	"stalin(ite|ism|ist)",
+	"social(ism|ist)",
+	"commun(ism|ist)",
+	"marx",
 ];
 
 BAD_SUBS = [
