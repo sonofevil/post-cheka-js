@@ -11,72 +11,81 @@
 
 // slurs & questionable words
 BLACKLIST = [
-	"\\bnig(\\b|g?(a|er)?s?)\\b",
-	"dindu(s?)",
-	"mudslime?s?",
-	"kikes?",
-	"mongoloids?",
-	"towel\\s*heads?",
-	"\\bspi(c|k|ck)s?\\b",
+	"(deus|desu) vult",
 	"\\bchinks?",
-	"niglets?",
-	"beaners?",
-	"\\bnips?\\b",
 	"\\bcoons?\\b",
-	"jungle\\s*bunn(y|ies?)",
-	"jigg?aboo?s?",
-	"\\bpakis?\\b",
-	"rag\\s*heads?",
-	"gooks?",
-	"g(y|i)ps(y|ies?)",
-	"jewe?y",
-	"jewed",
 	"\\bg(ip|yp)\\b",
-	"race mixing",
-	"cunts?",
-	"whor(es?|ing)",
+	"\\bnig(\\b|g?(a|er)?s?)\\b",
+	"\\bnips?\\b",
+	"\\bpakis?\\b",
+	"\\bre{3,}\\b",
 	"\\bslut(s|t?y)?",
-	"cock\\s?sucker(s|ing)?",
-	"fagg?(s|ots?|y)?\\b",
-	"twats?",
+	"\\bspergs?\\b",
+	"\\bspi(c|k|ck)s?\\b",
+	"\\btank(y|ies)",
+	"\\btard(s|ed)?\\b",
 	"\\btrann?(y|ies?)",
 	"\\btraps?\\b",
+	"attack helicopter",
+	"autis(tic|m|t)",
+	"beaners?",
+	"biodiversity",
+	"bitch(es|ing|y)?",
+	"cock\\s?sucker(s|ing)?",
+	"cuck",
+	"cultural marx(ist|ism)",
+	"cunts?",
+	"degenera(cy|te)",
+	"dindu(s?)",
+	"ephebophil(e|ia)",
+	"fagg?(s|ots?|y)?\\b",
+	"feminazis?",
+	"fucktard(s|ed)?",
+    "gay",
+	"g(y|i)ps(y|ies?)",
+	"gooks?",
+    "homo",
+	"hysterical",
+	"jewe?y",
+	"jewed",
+	"jigg?aboo?s?",
+	"jungle\\s*bunn(y|ies?)",
+	"kikes?",
+	"lib(er)?tard(s|ed)?",
+	"misandr(ist|y)",
+	"mongoloids?",
+	"mudslime?s?",
+	"multicultural(ist|ism)",
+	"niglets?",
+	"puss(?!y\\s?foot)(y|ies?)?",
+	"race mixing",
+	"rag\\s*heads?",
 	"retard",
 	"retarded",
 	"retards",
-	"\\btard(s|ed)?\\b",
-	"lib(er)?tard(s|ed)?",
-	"fucktard(s|ed)?",
-	"spaz(es)?",
-	"spastics?",
-	"\\bspergs?\\b",
-	"\\bre{3,}\\b",
-	"feminazis?",
-	"snowflake",
-	"sj(ew|w)",
-	"tumblrina",
-	"attack helicopter",
 	"sexually identify",
-	"ephebophil(e|ia)",
-	"(deus|desu) vult",
+	"sj(ew|w)",
+	"snowflake",
+	"spastics?",
+	"spaz(es)?",
+	"stalin",
+	"towel\\s*heads?",
 	"triggered",
-	"cuck",
+	"tumblrina",
+	"twats?",
 	"two gender",
-	"\\bbeta\\b",
-	"biodiversity",
-	"misandr(ist|y)",
-	"degenera(cy|te)",
-	"multicultural(ist|ism)",
-	"cultural marx(ist|ism)",
-	"autis(tic|m|t)",
-	"kek",
-	
-	
-	"\\btank(y|ies)",
-	"stalin(ite|ism|ist)",
-	"social(ism|ist)",
-	"commun(ism|ist)",
-	"marx",
+	"whor(es?|ing)",
+    "anarch",
+    "bernie",
+    "capital",
+    "communis",
+    "gender",
+    "lenin",
+    "marx",
+    "revolution",
+    "rosa luxemburg",
+    "socialis",
+    "transg"
 ];
 
 BAD_SUBS = [
@@ -117,20 +126,20 @@ function PostCheka($){
 	// initialize html and css
 	function init_html(){
 		// create [R] buttons next to usernames
-		var button = $("<a class='user-review-button' href='#' title='Review post history' style='margin-left:3px'>|Check for slurs|</a>");
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;text-decoration:underline overline'>| Scan for Keywords |</a>");
 		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
 		
-		$(".tagline .author").each(function(){
+		$(".tagline").each(function(){
 			var user = $(this).text().trim();
 			if (!user || user == "[deleted]") return;
 			var b = button.clone();
-			$(this).parent().find(".userattrs").after(b);
+			$(this).parent().find(".unvoted").after(b);
 		});
 	}
 	
 	function init_events(){
 		// review button click
-		$(document).delegate(".user-review-button", "click", function(e){
+		$(document).delegate(".cheka-button", "click", function(e){
 			e.preventDefault();
 			var username = $(this).parent().find(".author").text().trim();
 			if (!username || username == "[deleted]"){
@@ -255,7 +264,7 @@ function ReviewWindow(core){
 				} else {
 					post.text = data.body;
 					post.html = $("<div>").html(data.body_html).text();
-					post.url = data.link_permalink + data.id + "/";
+					post.url = data.link_permalink + data.id + "/?context=10000";
 				}
 				
 				post.subreddit = data.subreddit;
@@ -518,7 +527,7 @@ function ReviewWindow(core){
 				<div class="cheka-container">
 					<div class="review-header"><h1>☭ Post History Cheka ☭</h1><span class="review-close">&times;</span></div>
 					<div class="review-overview">
-						<h3><span class="review-mode">Loading</span> user <a href="#" class="review-username" target="_blank">...</a></h3>
+						<h3><span class="review-mode">Loading</span> user <a href="###" class="review-username" target="_blank">...</a></h3>
 						Total posts matched: <span class="total-matches">0</span>/<span class="total-posts">0</span>
 						<br>
 						<div class="all-matched-words"></div>
@@ -527,12 +536,12 @@ function ReviewWindow(core){
 					<div class="post-display-container">
 						<div class="review-post review-post-template">
 							<div class="post-header">
-								<span class="thread-title"></span> to <a class="subreddit" href="#" target="_blank"></a> <span class="points">0 points</span> <span class="timestamp"></span> <span class="time-ago"></span>
+								<span class="thread-title"></span> to <a class="subreddit" href="###" target="_blank"></a> <span class="points">0 points</span> <span class="timestamp"></span> <span class="time-ago"></span>
 								<br>
 								Matches on: <span class="post-matches"></span>
 							</div>
 							<div class="post-content"></div>
-							<a class="post-url" href="#" target="_blank">permalink</a>
+							<a class="post-url" href="###" target="_blank">permalink</a>
 						</div>
 					</div>
 				</div>
