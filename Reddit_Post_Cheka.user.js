@@ -133,7 +133,7 @@ function PostCheka($){
 			var user = $(this).text().trim();
 			if (!user || user == "[deleted]") return;
 			var b = button.clone();
-			$(this).parent().find(".unvoted").after(b);
+			$(this).parent().find(".author").after(b);
 		});
 	}
 	
