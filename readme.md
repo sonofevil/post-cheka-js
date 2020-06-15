@@ -1,12 +1,13 @@
 # post cheka userscript
 
 
-make sure one of the following userscript managers is installed in your browser:
+Make sure Tampermonkey is installed in your browser:
 
-* [firefox: greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
-* [chrome: tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+* [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+* [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
-then install post cheka here:
+Then install post cheka here:
 
 [install](https://github.com/SubcomandantePT/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js)
 
+This script only works in the old Reddit layout! (see old.reddit.com)
