@@ -13,3 +13,5 @@ Then install post cheka here:
 Places a scan button next to usernames.
 
 This script only works in the old Reddit layout! (see old.reddit.com)
+
+Update: Works on user profile pages in mobile browser now.
