@@ -487,7 +487,7 @@ function ReviewWindow(core){
 				padding: 4px 8px;
 				margin: 4px 0px;
 				overflow-y: scroll;
-				max-height: 30px;
+				max-height: 60px;
 			}
 
 
@@ -498,7 +498,7 @@ function ReviewWindow(core){
 				background-color: #fff;
 				border: 1px solid #ddd;
 				position: absolute;
-				top: 112px; bottom: 8px;
+				top: 160px; bottom: 8px;
 				left: 8px; right: 8px;
 				overflow-y: scroll;
 				padding: 8px;
@@ -546,9 +546,9 @@ function ReviewWindow(core){
 		var html = (function(){/*
 			<div id="cheka-review">
 				<div class="cheka-container">
-					<div class="review-header"><h1>☭ Post History Cheka ☭</h1><span class="review-close">&times;</span></div>
+					<div class="review-header"><h1 style='font-size: 14'>☭ Post History Cheka ☭</h1><span class="review-close">&times;</span></div>
 					<div class="review-overview">
-						<h3><span class="review-mode">Loading</span> user <a href="###" class="review-username" target="_blank">...</a></h3>
+						<h3 style='font-size: 14'><span class="review-mode">Loading</span> user <a href="###" class="review-username" target="_blank">...</a></h3>
 						Total posts matched: <span class="total-matches">0</span>/<span class="total-posts">0</span>
 						<br>
 						<div class="all-matched-words"></div>
