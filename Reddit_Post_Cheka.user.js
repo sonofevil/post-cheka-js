@@ -91,7 +91,6 @@ BLACKLIST = [
 ];
 
 BAD_SUBS = [
-	"shittankiessay",
 ];
 
 //jQuery.noConflict()
