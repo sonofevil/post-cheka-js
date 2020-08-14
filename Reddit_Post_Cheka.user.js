@@ -87,7 +87,7 @@ BLACKLIST = [
     "revolution",
     "rosa luxemburg",
     "socialis",
-    "transg"
+    "transgender"
 ];
 
 BAD_SUBS = [
