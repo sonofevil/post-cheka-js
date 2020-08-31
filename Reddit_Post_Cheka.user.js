@@ -9,7 +9,6 @@
 // @version     1.1
 // @grant       none
 // @run-at      document-idle
-// @require     https://code.jquery.com/jquery-1.12.4.min.js
 // @require     https://gist.githubusercontent.com/BrockA/2625891/raw/9c97aa67ff9c5d56be34a55ad6c18a314e5eb548/waitForKeyElements.js
 // ==/UserScript==
 
