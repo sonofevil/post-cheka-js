@@ -9,7 +9,7 @@
 // @version     1.1
 // @grant       none
 // @run-at      document-idle
-// @require     https://code.jquery.com/jquery-2.1.4.min.js
+// @require     https://code.jquery.com/jquery-1.12.4.min.js
 // @require     https://gist.githubusercontent.com/BrockA/2625891/raw/9c97aa67ff9c5d56be34a55ad6c18a314e5eb548/waitForKeyElements.js
 // ==/UserScript==
 
@@ -143,6 +143,7 @@ function PostCheka($){
 	}
 
     // initialize html and css on mobile reddit
+    // thanks to my friend Anna for helping me make this work
     function init_html2(){
 		// create [R] buttons next to usernames
 		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;font-size:24;text-decoration:underline overline'>| SCAN |</a>");
@@ -616,5 +617,22 @@ String.prototype.replaceAll = function(search, replacement){
 	return target.split(search).join(replacement);
 };
 
-window.postcheka = new PostCheka($);
+//Check for jQuery conflicts and run PostCheka script
+//Credit for this snippet goes to my friend Anna
+if (typeof jQuery === 'function') {
+  // already have jquery, use the existing ver
+  onjquery()
+} else {
+  // load it
+  var script = document.createElement('script')
+  script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
+  script.onload = onjquery
+  document.body.append(script)
+}
+
+function onjquery () {
+  // do all the waitForElement stuff in here
+  window.postcheka = new PostCheka($);
+}
+
 });
