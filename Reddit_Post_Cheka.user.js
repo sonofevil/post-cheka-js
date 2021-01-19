@@ -1,5 +1,3 @@
-//this is a modified version of sonofevil's post-checka-js plugin. you can find the original at https://github.com/sonofevil/post-cheka-js.
-
 // ==UserScript==
 // @name        Reddit Post Cheka
 // @namespace   reddit-post-cheka
@@ -82,9 +80,7 @@ BLACKLIST = [
 	"whor(es?|ing)",
     "socialis",
     "transgender",
-	
-	//added by Pyro System
-	"misogyn(ist|y)",
+	"misogyn(ist|y)", //added by Pyro System
 	"femini(s(m|t)|ne)",
 	"\\bqueers?",
 	"third\\s?wave",
@@ -94,7 +90,7 @@ BLACKLIST = [
 	"dykes?",
 	"pay\\s?gap",
 	"\\bmr(a|m)\\b",
-	//"(wo)?men'?s\\srights",
+	"(wo)?men'?s\\srights",
 	"red\\spill(ed)?",
 	"\\balphas?\\b",
 	"\\bbetas?\\b",
@@ -135,14 +131,13 @@ BLACKLIST = [
 	"gold\\s*digger",
 	"hag",
 	"welfare\\squeen",
-	
-	//to be removed if there are too many false positives
-	"sandwich",
+	"tenderqueer",
+	"transtrender",
+	"sandwich",	//to be removed if there are too many false positives
 	"dishwasher"
 ];
 
 BAD_SUBS = [
-
 ];
 
 //jQuery.noConflict()
