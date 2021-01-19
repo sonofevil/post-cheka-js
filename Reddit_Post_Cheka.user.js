@@ -161,6 +161,7 @@ function PostCheka($){
 		self.window = new ReviewWindow(self);
 
 		init_html();
+        waitForKeyElements (".UserProfileHeader__banner-user-name", init_html2);
 		init_events();
 
 		// compile blacklist regex
@@ -172,22 +173,39 @@ function PostCheka($){
 	// initialize html and css
 	function init_html(){
 		// create [R] buttons next to usernames
-		var button = $("<a class='user-review-button tb-bracket-button' href='#' title='Review post history' style='margin-left:3px'>[Check Post History]</a>");
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;text-decoration:underline overline'>| Check Post History |</a>");
 		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
 
-		$(".tagline .author").each(function(){
+		$(".tagline").each(function(){
 			var user = $(this).text().trim();
 			if (!user || user == "[deleted]") return;
 			var b = button.clone();
-			$(this).parent().find(".userattrs").after(b);
+			$(this).parent().find(".author").after(b);
+		});
+	}
+
+    // initialize html and css on mobile reddit
+    // thanks to my friend Anna for helping me make this work
+    function init_html2(){
+		// create [R] buttons next to usernames
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;font-size:24;text-decoration:underline overline'>| Check Post History |</a>");
+		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
+
+		$(".UserProfileHeader__banner").each(function(){
+			var user = $(this).text().trim();
+			if (!user || user == "[deleted]") return;
+			var b = button.clone();
+			$(this).parent().find(".UserProfileHeader__banner-user-name").after(b);
 		});
 	}
 
 	function init_events(){
 		// review button click
-		$(document).delegate(".user-review-button", "click", function(e){
+		$(document).delegate(".cheka-button", "click", function(e){
 			e.preventDefault();
 			var username = $(this).parent().find(".author").text().trim();
+            if (!username) username = $(this).parent().find(".UserProfileHeader__banner-user-name").text().trim();
+            username = username.replace(/^u\//, '');
 			if (!username || username == "[deleted]"){
 				alert("Invalid user to review");
 				return;
@@ -310,7 +328,7 @@ function ReviewWindow(core){
 				} else {
 					post.text = data.body;
 					post.html = $("<div>").html(data.body_html).text();
-					post.url = data.link_permalink + data.id + "/";
+					post.url = data.link_permalink + data.id + "/?context=10000";
 				}
 
 				post.subreddit = data.subreddit;
@@ -468,11 +486,9 @@ function ReviewWindow(core){
 				background-color: rgba(0, 0, 0, .8);
 				z-index: 9999;
 			}
-
 			#cheka-review.open{
 				display: block;
 			}
-
 			.cheka-container{
 				position: absolute;
 				top: 20px; bottom: 40px;
@@ -483,11 +499,9 @@ function ReviewWindow(core){
 				z-index: 9999;
 				font-size: 12px;
 			}
-
 			.review-header h1{
 				margin: 0; padding: 0;
 			}
-
 			.review-header .review-close{
 				position: absolute;
 				top: 0; right: 0;
@@ -496,15 +510,12 @@ function ReviewWindow(core){
 				cursor: pointer;
 				color: #555;
 			}
-
-
 			////////////////////////////////
 			// OVERVIEW
 			////////////////////////////////
 			.review-username{
 				font-weight: bold;
 			}
-
 			.review-overview .all-matched-words{
 				display: block;
 				background-color: #fff;
@@ -512,10 +523,8 @@ function ReviewWindow(core){
 				padding: 4px 8px;
 				margin: 4px 0px;
 				overflow-y: scroll;
-				max-height: 30px;
+				max-height: 60px;
 			}
-
-
 			////////////////////////////////
 			// POST CONTAINER
 			////////////////////////////////
@@ -523,34 +532,28 @@ function ReviewWindow(core){
 				background-color: #fff;
 				border: 1px solid #ddd;
 				position: absolute;
-				top: 112px; bottom: 8px;
+				top: 160px; bottom: 8px;
 				left: 8px; right: 8px;
 				overflow-y: scroll;
 				padding: 8px;
 			}
-
 			.review-post{
 				padding-bottom: 15px;
 				margin-bottom: 15px;
 				border-bottom: 1px solid #ddd;
 			}
-
 			.post-header{
 				color: #777;
 			}
-
 			.post-header .time-ago{
 				font-size: 10px;
 			}
-
 			.post-header .subreddit, .post-header .points, .post-header .thread-title{
 				font-weight: bold;
 			}
-
 			.post-content{
 				padding: 4px 8px;
 			}
-
 			.review-post .review-highlight{
 				//font-weight: bold;
 				background-color: rgba(255, 60, 0, .5);
@@ -571,9 +574,9 @@ function ReviewWindow(core){
 		var html = (function(){/*
 			<div id="cheka-review">
 				<div class="cheka-container">
-					<div class="review-header"><h1>☭ Post History Cheka ☭</h1><span class="review-close">&times;</span></div>
+					<div class="review-header"><h1 style='font-size: 14'>☭ Post History Cheka ☭</h1><span class="review-close">&times;</span></div>
 					<div class="review-overview">
-						<h3><span class="review-mode">Loading</span> user <a href="#" class="review-username" target="_blank">...</a></h3>
+						<h3 style='font-size: 14'><span class="review-mode">Loading</span> user <a href="###" class="review-username" target="_blank">...</a></h3>
 						Total posts matched: <span class="total-matches">0</span>/<span class="total-posts">0</span>
 						<br>
 						<div class="all-matched-words"></div>
@@ -582,12 +585,12 @@ function ReviewWindow(core){
 					<div class="post-display-container">
 						<div class="review-post review-post-template">
 							<div class="post-header">
-								<span class="thread-title"></span> to <a class="subreddit" href="#" target="_blank"></a> <span class="points">0 points</span> <span class="timestamp"></span> <span class="time-ago"></span>
+								<span class="thread-title"></span> to <a class="subreddit" href="###" target="_blank"></a> <span class="points">0 points</span> <span class="timestamp"></span> <span class="time-ago"></span>
 								<br>
 								Matches on: <span class="post-matches"></span>
 							</div>
 							<div class="post-content"></div>
-							<a class="post-url" href="#" target="_blank">permalink</a>
+							<a class="post-url" href="###" target="_blank">permalink</a>
 						</div>
 					</div>
 				</div>
@@ -641,5 +644,22 @@ String.prototype.replaceAll = function(search, replacement){
 	return target.split(search).join(replacement);
 };
 
-window.postcheka = new PostCheka($);
+//Check for jQuery conflicts and run PostCheka script
+//Credit for this snippet goes to my friend Anna
+if (typeof jQuery === 'function') {
+  // already have jquery, use the existing ver
+  onjquery()
+} else {
+  // load it
+  var script = document.createElement('script')
+  script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
+  script.onload = onjquery
+  document.body.append(script)
+}
+
+function onjquery () {
+  // do all the waitForElement stuff in here
+  window.postcheka = new PostCheka($);
+}
+
 });
