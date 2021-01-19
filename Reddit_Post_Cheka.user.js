@@ -96,7 +96,7 @@ BLACKLIST = [
 	"\\bchads?\\b",
 	"\\bstaceys?\\b",
 	"bio(logical)?\\s(sex|gender)",
-	"virgins?",
+	"\\bvirgins?\\b",
 	"\\bpua\\b",
 	"friendzon(ed|ing)?",
 	"\\bnegg?(ing)?\\b",
