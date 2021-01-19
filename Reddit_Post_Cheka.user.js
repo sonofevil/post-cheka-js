@@ -1,11 +1,13 @@
+//this is a modified version of sonofevil's post-checka-js plugin. you can find the original at https://github.com/sonofevil/post-cheka-js.
+
 // ==UserScript==
 // @name        Reddit Post Cheka
 // @namespace   reddit-post-cheka
 // @include     https://www.reddit.com/*
 // @include     https://reddit.com/*
 // @include     https://old.reddit.com/*
-// @updateURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
-// @downloadURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
+// @updateURL	https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
+// @downloadURL	https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
 // @version     1.1
 // @grant       none
 // @run-at      document-idle
@@ -83,7 +85,7 @@ BLACKLIST = [
 	
 	//added by Pyro System
 	"misogyn(ist|y)",
-	"femini(sm|ne)",
+	"femini(s(m|t)|ne)",
 	"\\bqueers?",
 	"third\\s?wave",
 	"trann?(y|ie)s?",
