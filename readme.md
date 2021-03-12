@@ -8,7 +8,7 @@ Make sure Tampermonkey is installed in your browser:
 
 Then install post cheka here:
 
-[install](https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js)
+[install](https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js)
 
 Places a scan button next to usernames.
 

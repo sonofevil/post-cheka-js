@@ -4,8 +4,8 @@
 // @include     https://www.reddit.com/*
 // @include     https://reddit.com/*
 // @include     https://old.reddit.com/*
-// @updateURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
-// @downloadURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
+// @updateURL	https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
+// @downloadURL	https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
 // @version     1.1
 // @grant       none
 // @run-at      document-idle
@@ -64,11 +64,10 @@ BLACKLIST = [
 	"puss(?!y\\s?foot)(y|ies?)?",
 	"race mixing",
 	"rag\\s*heads?",
-	"retard",
+	"retards?",
 	"retarded",
-	"retards",
 	"sexually identify",
-	"sj(ew|w)",
+	"sj(ew|w)s?",
 	"snowflake",
 	"spastics?",
 	"spaz(es)?",
@@ -79,17 +78,61 @@ BLACKLIST = [
 	"twats?",
 	"two gender",
 	"whor(es?|ing)",
-    "anarch",
-    "bernie",
-    "capital",
-    "communis",
-    "gender",
-    "lenin",
-    "marx",
-    "revolution",
-    "rosa luxemburg",
     "socialis",
-    "transgender"
+    "trans((g|tr)ender)?s?\\b",
+	"misogyn(ist|y)", //added by Pyro System
+	"femini(s(m|t)|ne)",
+	"queers?",
+	"third\\s?wave",
+	"trann?(y|ie)s?",
+	"radfem",
+	"dykes?",
+	"pay\\s?gap",
+	"\\bmr(a|m)\\b",
+	"(wo)?men'?s\\srights",
+	"red\\spill(ed)?",
+	"\\balphas?\\b",
+	"\\bbetas?\\b",
+	"\\bchads?\\b",
+	"\\bstaceys?\\b",
+	"bio(logical)?\\s(sex|gender)",
+	"\\bvirgins?\\b",
+	"\\bpua\\b",
+	"friendzon(ed|ing)?",
+	"\\bnegg?(ing)?\\b",
+	"\\btits?\\b",
+	"whores?",
+	"sluts?",
+	"cumdump(ster)?s?",
+	"the\\swall",
+	"\\bawalt\\b",
+	"\\bkam\\b",
+	"cock\\scarousel",
+	"dark\\striad",
+	"[Hh]ypergamy",
+	"incels?",
+	"[Oo]neitis",
+	"pussy\\spass",
+	"[Ss]nowflakes?",
+	"white\\s?knight",
+	"simp(s|ing)?\\b",
+	"seduction",
+	"nice\\sguy",
+	"chromosomes?",
+	"dysphoria",
+	"baby\\s?mama",
+	"[Bb]utch",
+	"baeddel",
+	"bimbos?",
+	"cock\\s?tease",
+	"cougar",
+	"milf",
+	"gold\\s*digger",
+	"hag",
+	"welfare\\squeen",
+	"tenderqueer",
+	"sandwich",	//to be removed if there are too many false positives
+	"dishwasher"
 ];
 
 BAD_SUBS = [
@@ -130,7 +173,7 @@ function PostCheka($){
 	// initialize html and css
 	function init_html(){
 		// create [R] buttons next to usernames
-		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;text-decoration:underline overline'>| Scan for Keywords |</a>");
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;text-decoration:underline overline'>| Check Post History |</a>");
 		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
 
 		$(".tagline").each(function(){
@@ -145,7 +188,7 @@ function PostCheka($){
     // thanks to my friend Anna for helping me make this work
     function init_html2(){
 		// create [R] buttons next to usernames
-		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;font-size:24;text-decoration:underline overline'>| SCAN |</a>");
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;font-size:24;text-decoration:underline overline'>| Check Post History |</a>");
 		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
 
 		$(".UserProfileHeader__banner").each(function(){
@@ -443,11 +486,9 @@ function ReviewWindow(core){
 				background-color: rgba(0, 0, 0, .8);
 				z-index: 9999;
 			}
-
 			#cheka-review.open{
 				display: block;
 			}
-
 			.cheka-container{
 				position: absolute;
 				top: 20px; bottom: 40px;
@@ -458,11 +499,9 @@ function ReviewWindow(core){
 				z-index: 9999;
 				font-size: 12px;
 			}
-
 			.review-header h1{
 				margin: 0; padding: 0;
 			}
-
 			.review-header .review-close{
 				position: absolute;
 				top: 0; right: 0;
@@ -471,15 +510,12 @@ function ReviewWindow(core){
 				cursor: pointer;
 				color: #555;
 			}
-
-
 			////////////////////////////////
 			// OVERVIEW
 			////////////////////////////////
 			.review-username{
 				font-weight: bold;
 			}
-
 			.review-overview .all-matched-words{
 				display: block;
 				background-color: #fff;
@@ -489,8 +525,6 @@ function ReviewWindow(core){
 				overflow-y: scroll;
 				max-height: 60px;
 			}
-
-
 			////////////////////////////////
 			// POST CONTAINER
 			////////////////////////////////
@@ -503,29 +537,23 @@ function ReviewWindow(core){
 				overflow-y: scroll;
 				padding: 8px;
 			}
-
 			.review-post{
 				padding-bottom: 15px;
 				margin-bottom: 15px;
 				border-bottom: 1px solid #ddd;
 			}
-
 			.post-header{
 				color: #777;
 			}
-
 			.post-header .time-ago{
 				font-size: 10px;
 			}
-
 			.post-header .subreddit, .post-header .points, .post-header .thread-title{
 				font-weight: bold;
 			}
-
 			.post-content{
 				padding: 4px 8px;
 			}
-
 			.review-post .review-highlight{
 				//font-weight: bold;
 				background-color: rgba(255, 60, 0, .5);
