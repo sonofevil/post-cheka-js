@@ -4,8 +4,8 @@
 // @include     https://www.reddit.com/*
 // @include     https://reddit.com/*
 // @include     https://old.reddit.com/*
-// @updateURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
+// @updateURL	  https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
 // @downloadURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
-// @version     1.1
+// @version     1.2
 // @grant       none
 // ==/UserScript==
