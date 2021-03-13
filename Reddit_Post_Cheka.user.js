@@ -4,9 +4,9 @@
 // @include     https://www.reddit.com/*
 // @include     https://reddit.com/*
 // @include     https://old.reddit.com/*
-// @updateURL	https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
-// @downloadURL	https://github.com/pyroMechanical/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
-// @version     1.1
+// @updateURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.meta.js
+// @downloadURL	https://github.com/sonofevil/post-cheka-js/raw/master/Reddit_Post_Cheka.user.js
+// @version     1.2
 // @grant       none
 // @run-at      document-idle
 // @require     https://gist.githubusercontent.com/BrockA/2625891/raw/9c97aa67ff9c5d56be34a55ad6c18a314e5eb548/waitForKeyElements.js
