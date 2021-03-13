@@ -205,7 +205,7 @@ function PostCheka($){
 	// initialize html and css
 	function init_html(){
 		// create [R] buttons next to usernames
-		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;text-decoration:underline overline'>| Check Post History |</a>");
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;text-decoration:underline overline'>| Scan Post History |</a>");
 		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
 
 		$(".tagline").each(function(){
@@ -220,7 +220,7 @@ function PostCheka($){
     // thanks to my friend Anna for helping me make this work
     function init_html2(){
 		// create [R] buttons next to usernames
-		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;font-size:24;text-decoration:underline overline'>| Check Post History |</a>");
+		var button = $("<a class='cheka-button' href='###' title='Review post history' style='margin-left:3px;font-weight:bold;font-size:24;text-decoration:underline overline'>| Scan Post History |</a>");
 		if (button.is("div")) button = $(button.get(1)); // fix for a weird bug where <a> gets wrapped in a <div>
 
 		$(".UserProfileHeader__banner").each(function(){
